@@ -19,7 +19,7 @@ namespace Athentication.Controllers
         /// <returns>Simple test string</returns>
         public string Index()
         {
-            return "OK";
+            return "Sqlite Authentication";
         }
 
         /// <summary>
