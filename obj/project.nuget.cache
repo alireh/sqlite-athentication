@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WLjJ8163KnDMCCX6uAkeSfavZlSzbT2b06es6+YilI3z6riuAUNendQKDs++J2YextaMwKdSsEKcbxObQZcxsA==",
+  "dgSpecHash": "lH0nJcpMKwY8tNuIu0tqiKnYXnQnMtkUFgGtUoPLC05ojmJ+71HC160kLbWbuFcDX71Pd3T7A/AFR5RAw8wPxQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\source\\repos\\Athentication\\Athentication.csproj",
+  "projectFilePath": "C:\\Users\\user\\Source\\Repos\\sqlite-athentication\\Athentication.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

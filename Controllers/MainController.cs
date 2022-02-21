@@ -122,14 +122,14 @@ namespace Athentication.Controllers
         /// <param name="userInfo">The user informations </param>
         /// <returns>Response Code, Data and message.</returns>
         [HttpGet]
-        [Route("/api/authentication/login")]
-        public async Task<ResponseModel> Login([FromBody] UserAuthInfo userInfo)
+        [Route("/api/authentication/signin")]
+        public async Task<ResponseModel> Signin([FromBody] UserAuthInfo userInfo)
         {
             return await Task.Run(() =>
             {
                 try
                 {
-                    logger?.LogInformation("Login");
+                    logger?.LogInformation("Signin");
                     var exists = SqliteManager.Instance.ExistsUser(userInfo.Username, userInfo.Password);
                     if (exists)
                     {
@@ -137,7 +137,7 @@ namespace Athentication.Controllers
                         var user = SqliteManager.Instance.GetUser(userInfo.Username);
                         SqliteManager.Instance.AddReport(new ReportInfo
                         {
-                            State = "Login",
+                            State = "Signin",
                             ActionDate = $"{now.Year}-{now.Month}-{now.Day} : {now.Hour}:{now.Minute}:{now.Second}",
                             Username = user.Username,
                             UserId = user.Id,
@@ -156,7 +156,7 @@ namespace Athentication.Controllers
                 }
                 catch (Exception ex)
                 {
-                    logger?.LogError($"Login Message : {ex.Message}");
+                    logger?.LogError($"Signin Message : {ex.Message}");
                     return new ResponseModel
                     {
                         message = "failed",
@@ -167,18 +167,18 @@ namespace Athentication.Controllers
         }
 
         /// <summary>
-        /// Logout user
+        /// Signout user
         /// </summary>
         /// <returns>Response Code, Data and message.</returns>
         [HttpGet]
-        [Route("/api/authentication/logout/{id}")]
-        public async Task<ResponseModel> Logout([FromRoute] int id)
+        [Route("/api/authentication/signout/{id}")]
+        public async Task<ResponseModel> Signout([FromRoute] int id)
         {
             return await Task.Run(() =>
             {
                 try
                 {
-                    logger?.LogInformation("Logout");
+                    logger?.LogInformation("Signout");
                     var success = SqliteManager.Instance.UpdateUserToken(id, "");
                     if (success)
                     {
@@ -186,7 +186,7 @@ namespace Athentication.Controllers
                         var user = SqliteManager.Instance.GetUser(id);
                         SqliteManager.Instance.AddReport(new ReportInfo
                         {
-                            State = "Logout",
+                            State = "Signout",
                             ActionDate = $"{now.Year}-{now.Month}-{now.Day} : {now.Hour}:{now.Minute}:{now.Second}",
                             Username = user.Username,
                             UserId = user.Id,
@@ -205,7 +205,7 @@ namespace Athentication.Controllers
                 }
                 catch (Exception ex)
                 {
-                    logger?.LogError($"Logout Message : {ex.Message}");
+                    logger?.LogError($"Signout Message : {ex.Message}");
                     return new ResponseModel
                     {
                         message = "failed",
@@ -285,6 +285,41 @@ namespace Athentication.Controllers
                 catch (Exception ex)
                 {
                     logger?.LogError($"GetUser Message : {ex.Message}");
+                    return new ResponseModel
+                    {
+                        message = "failed",
+                        status = 500
+                    };
+                }
+            });
+        }
+
+        /// <summary>
+        /// Returns a report list
+        /// </summary>
+        /// <returns>Response Code, Data and message.</returns>
+        [HttpGet]
+        [Route("/api/authentication/reports")]
+        public async Task<ResponseModel> GetReports()
+        {
+            return await Task.Run(() =>
+            {
+                try
+                {
+                    logger?.LogInformation("GetReports");
+
+                    var reports = SqliteManager.Instance.GetReports();
+                    var data = JsonConvert.SerializeObject(reports);
+                    return new ResponseModel
+                    {
+                        content = data,
+                        message = "success",
+                        status = 200
+                    };
+                }
+                catch (Exception ex)
+                {
+                    logger?.LogError($"GetReports Message : {ex.Message}");
                     return new ResponseModel
                     {
                         message = "failed",

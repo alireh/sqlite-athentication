@@ -1634,11 +1634,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\source\\repos\\Athentication\\Athentication.csproj",
+      "projectUniqueName": "C:\\Users\\user\\Source\\Repos\\sqlite-athentication\\Athentication.csproj",
       "projectName": "Athentication",
-      "projectPath": "C:\\Users\\user\\source\\repos\\Athentication\\Athentication.csproj",
+      "projectPath": "C:\\Users\\user\\Source\\Repos\\sqlite-athentication\\Athentication.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\source\\repos\\Athentication\\obj\\",
+      "outputPath": "C:\\Users\\user\\Source\\Repos\\sqlite-athentication\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
